@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.HouseInfoDto;
 import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.service.HouseDealService;
@@ -60,6 +61,8 @@ public class HouseDealController {
 	public String searchDong(@RequestParam("dong") String dong, Model model) {
 		try {
 			System.out.println(dong);
+			List<HouseDealDto> deals = houseDealService.searchDong(dong);
+			System.out.println(deals);
 			model.addAttribute("list", houseDealService.searchDong(dong));
 			return "housedeal/test";
 		} catch (Exception e) {

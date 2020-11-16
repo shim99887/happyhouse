@@ -33,6 +33,7 @@ public class HouseDealServiceImpl implements HouseDealService{
 
 	@Override
 	public List<HouseDealDto> searchDong(String dong) {
+		System.out.println("impl" + dong);
 		return dao.searchDong(dong);
 	}
 
