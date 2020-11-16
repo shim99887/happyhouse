@@ -25,7 +25,7 @@
 	<select id="searchDong" parameterType="String" resultType="HouseDealDto">
 		select *
 		from housedeal
-		where dong = #{dong}
+		where dong like #{dong}
 	</select>
 	
 	<select id="searchType" parameterType="String" resultType="HouseDealDto">
@@ -35,8 +35,15 @@
 	</select>
 	
 	<select id="searchSido" resultType="SidoGugunCodeDto">
-		select *
-		from sidocode
+ 		select sido_code as sidoCode, sido_name as sidoName from sidocode
+	</select>
+	
+	<select id="searchGugun" resultType="SidoGugunCodeDto">
+ 		select gugun_code as gugunCode, gugun_name as gugunName from guguncode
+	</select>
+	
+	<select id="searchDongName" resultType="DongCodeDto">
+ 		select dongcode, dong from dongcode
 	</select>
 	
 	<select id="searchDetail" parameterType="String" resultType="HouseDealDto">

@@ -32,7 +32,7 @@ public class HouseDealRestServiceImpl implements HouseDealRestService{
 	@Override
 	public  List<SidoGugunCodeDto> getGoon(String sido) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.getGoon(sido);
+		return dao.getGoon(sido.substring(0,2));
 	}
 	
 	@Override

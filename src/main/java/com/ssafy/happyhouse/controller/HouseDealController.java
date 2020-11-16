@@ -3,13 +3,17 @@ package com.ssafy.happyhouse.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssafy.happyhouse.model.HouseInfoDto;
+import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.service.HouseDealService;
 
 @Controller
@@ -23,8 +27,11 @@ public class HouseDealController {
 		System.out.println(houseDealService.searchSido());
 		model.addAttribute("list", houseDealService.searchAll());
 		model.addAttribute("sidos", houseDealService.searchSido());
+//		model.addAttribute("guguns", houseDealService.searchGugun());
+//		model.addAttribute("dongs", houseDealService.searchDongName());
 		return "housedeal/test";
 	}
+
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@RequestParam("no") String no, Model model) {
@@ -52,6 +59,7 @@ public class HouseDealController {
 	@RequestMapping(value = "/searchDong", method = RequestMethod.GET,  headers = { "Content-type=application/json" })
 	public String searchDong(@RequestParam("dong") String dong, Model model) {
 		try {
+			System.out.println(dong);
 			model.addAttribute("list", houseDealService.searchDong(dong));
 			return "housedeal/test";
 		} catch (Exception e) {

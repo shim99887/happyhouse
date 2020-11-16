@@ -1,4 +1,3 @@
-<<<<<<< src/main/java/com/ssafy/happyhouse/SwaggerConfiguration.java
 package com.ssafy.happyhouse;
 //http://localhost:8000/happyhouse/swagger-ui.html
 import org.springframework.context.annotation.Bean;

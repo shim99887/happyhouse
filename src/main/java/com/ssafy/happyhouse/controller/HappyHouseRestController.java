@@ -67,4 +67,14 @@ public class HappyHouseRestController {
 		}
 		return new ResponseEntity< List<String>>(dong, HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/map/aptList")
+	public ResponseEntity<List<String>> getAptList(@RequestParam String dong) throws Exception{
+		 List<String> dong = service.getDong(gugun);
+		System.out.println(dong);
+		if (dong.isEmpty()) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity< List<String>>(dong, HttpStatus.OK);
+	}
 }

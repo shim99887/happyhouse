@@ -4,11 +4,13 @@
 <%
 	String root = request.getContextPath();
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="searchApt">
@@ -27,18 +29,14 @@
 	<div>
 		시도 : <select id="sido">
 		<c:forEach var="sido" items="${sidos}">
-			<option value="${sido.sido_name}">${sido.sido_name}</option>
+			<option value="${sido.sidoCode}">${sido.sidoName}</option>
 		</c:forEach>
 		</select>
 		구군 : <select id="gugun">
-		<c:forEach var="sido" items="${sidos}">
-			<option value="${sido.aptName}">${sido.aptName}</option>
-		</c:forEach>
+ 
 		</select>
 		읍면동 : <select id="dong">
-		<c:forEach var="sido" items="${sidos}">
-			<option value="${sido.aptName}">${sido.aptName}</option>
-		</c:forEach>
+
 		</select>
 	</div>
 	
@@ -54,7 +52,7 @@
 						<td width="100">지역 코드</td>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="houseList">
 						<c:forEach  var="housedeal"		items="${list}">
 							<tr>
 								<td width="100">${housedeal.no}</td>
@@ -82,24 +80,64 @@
 					</tr>
 				</thead>
 				<tbody>
-						<tr>
-							<td width="100">${detail.no}</td>
-							<td width="100">${detail.dong}</td>
-							<td width="200">${detail.aptName}</td>
-							<td width="100">${detail.code}</td>
-							<td width="100">${detail.dealAmount}</td>
-							<td width="100">${detail.buildYear}</td>
-							<td width="100">${detail.dealYear}</td>
-							<td width="100">${detail.area}</td>
-							<td width="100">${detail.floor}</td>
-							<td width="100">${detail.jibun}</td>
-						</tr>	
+					<tr>
+						<td width="100">${detail.no}</td>
+						<td width="100">${detail.dong}</td>
+						<td width="200">${detail.aptName}</td>
+						<td width="100">${detail.code}</td>
+						<td width="100">${detail.dealAmount}</td>
+						<td width="100">${detail.buildYear}</td>
+						<td width="100">${detail.dealYear}</td>
+						<td width="100">${detail.area}</td>
+						<td width="100">${detail.floor}</td>
+						<td width="100">${detail.jibun}</td>
+					</tr>	
 				</tbody>
 			</c:otherwise>
 		</c:choose>
 	</table>
 	<script>
-
+	$(document).ready(function(){
+	    $("#sido").change(function(){
+	    $("#gugun").empty();
+	        $.get("http://localhost:8000/happyhouse/api/map/goon",{
+	            sido : $("#sido").val()
+	        }, function(data, status) {
+	            $.each(data, function(index, vo) {
+	                $("#gugun").append("<option value='"+vo.gugunCode+"'>" + vo.gugunName + "</option>");
+	            });//each
+	        }//function)
+	        );
+	    });
+	    $("#gugun").change(function(){
+            $("#dong").empty();
+            $.get("http://localhost:8000/happyhouse/api/map/dong",{
+                gugun : $("#gugun").val()
+            }, function(data, status) {
+                $.each(data, function(index, vo) {
+                    $("#dong").append("<option value='"+vo+"'>" + vo + "</option>");
+                });//each
+            }//function)
+            );
+        });
+	    $("#dong").change(function(){
+	    	$("#houseList").empty();
+	    	console.log($("#dong").text());
+	    	document.location.href = "http://localhost:8000/happyhouse/housedeal/searchDong?dong=" + $("#dong").children("option:selected").val();
+/* 	        $.get("http://localhost:8000/happyhouse/housedeal/searchDong",{
+	            dong : $("#dong").val()
+	        }, function(data, status) {
+	            $.each(data, function(index, vo) {
+	                $("#houseList").append("<td width='100'>" + vo.no + "</td>" +
+					"<td width='100'>" + vo.dong + "</td>" +
+					"<td width='200'> " + vo.aptName + "</td>" +
+					"<td width='100'>" + vo.jibun + "</td>" +
+					"<td width='100'>" + vo.code + "</td>)"";
+	            });//each
+	        }//function)
+	        ); */
+	    });
+	})
 	</script>
 </body>
 </html>
