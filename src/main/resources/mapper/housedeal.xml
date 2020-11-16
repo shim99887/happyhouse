@@ -35,7 +35,7 @@
 	</select>
 	
 	<select id="searchSido" resultType="SidoGugunCodeDto">
-		select *
+		select sido_code as sidoCode, sido_name as sidoName
 		from sidocode
 	</select>
 	

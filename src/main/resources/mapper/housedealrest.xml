@@ -20,8 +20,8 @@
 		where left(gugun_code,2) = #{sido}
 	</select>
 	
-	<select id="getDong" parameterType="string" resultType="string">
-		select dong
+	<select id="getDong" parameterType="string" resultType="map">
+		select dong, dongcode
 		from dongcode
 		where left(dongcode,5) = #{gugun}
 	</select>

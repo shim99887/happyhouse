@@ -1,6 +1,5 @@
 package com.ssafy.happyhouse.controller;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,13 +55,13 @@ public class HappyHouseRestController {
 	}
 	
 	@GetMapping(value = "/map/dong")
-	public ResponseEntity<List<String>> getDong(@RequestParam String gugun) throws Exception{
+	public ResponseEntity<List<Map<String,String>>> getDong(@RequestParam String gugun) throws Exception{
 		System.out.println(gugun);
-		 List<String> dong = service.getDong(gugun);
+		List<Map<String,String>> dong = service.getDong(gugun);
 		System.out.println(dong);
 		if (dong.isEmpty()) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity< List<String>>(dong, HttpStatus.OK);
+		return new ResponseEntity<List<Map<String,String>>>(dong, HttpStatus.OK);
 	}
 }

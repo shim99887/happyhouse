@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 	<div id="searchApt">
@@ -27,17 +28,17 @@
 	<div>
 		시도 : <select id="sido">
 		<c:forEach var="sido" items="${sidos}">
-			<option value="${sido.sido_name}">${sido.sido_name}</option>
+			<option value="${sido.sidoCode}">${sido.sidoName}</option>
 		</c:forEach>
 		</select>
 		구군 : <select id="gugun">
 		<c:forEach var="sido" items="${sidos}">
-			<option value="${sido.aptName}">${sido.aptName}</option>
+			<%-- <option value="${sido.aptName}">${sido.aptName}</option> --%>
 		</c:forEach>
 		</select>
 		읍면동 : <select id="dong">
 		<c:forEach var="sido" items="${sidos}">
-			<option value="${sido.aptName}">${sido.aptName}</option>
+			<%-- <option value="${sido.aptName}">${sido.aptName}</option> --%>
 		</c:forEach>
 		</select>
 	</div>
@@ -99,7 +100,33 @@
 		</c:choose>
 	</table>
 	<script>
-
+	$(document).ready(function(){
+		$("#sido").change(function(){
+		$("#gugun").empty();
+			$.get("http://localhost:8000/happyhouse/api/map/goon",{
+				sido : $("#sido").val()
+			}, function(data, status) {
+				$.each(data, function(index, vo) {
+					$("#gugun").append("<option value='"+vo.gugunCode+"'>" + vo.gugunName + "</option>");
+				});//each
+			}//function)
+			);
+		});
+		$("#gugun").change(function(){
+			$("#dong").empty();
+			$.get("http://localhost:8000/happyhouse/api/map/dong",{
+				gugun : $("#gugun").val()
+			}, function(data, status) {
+				$.each(data, function(index, vo) {
+					$("#dong").append("<option value='"+vo.dongcode+"'>" + vo.dong + "</option>");
+				});//each
+			}//function)
+			);
+		});
+		$("#dong").change(function(){
+			document.location.href="/";
+		})
+	})
 	</script>
 </body>
 </html>

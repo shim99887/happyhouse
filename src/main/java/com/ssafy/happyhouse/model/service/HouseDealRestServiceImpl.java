@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.HouseDealDto;
@@ -32,12 +31,13 @@ public class HouseDealRestServiceImpl implements HouseDealRestService{
 	@Override
 	public  List<SidoGugunCodeDto> getGoon(String sido) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.getGoon(sido);
+		return dao.getGoon(sido.substring(0,2));
 	}
 	
 	@Override
-	public List<String> getDong(String gugun) throws Exception {
-		// TODO Auto-generated method stub
-		return dao.getDong(gugun);
+	public List<Map<String,String>> getDong(String gugun) throws Exception {
+		List<Map<String, String>>map = dao.getDong(gugun);
+		System.out.println(map);
+		return map;
 	}
 }
