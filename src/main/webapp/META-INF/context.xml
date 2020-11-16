@@ -5,6 +5,9 @@
 			username="ssafy" password="ssafy" driverClassName="com.mysql.cj.jdbc.Driver" 	
 
 			url="jdbc:mysql://localhost:3306/happyhouse?serverTimezone=UTC&amp;useUniCode=yes&amp;characterEncoding=UTF-8"/> 
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
 </Context>
