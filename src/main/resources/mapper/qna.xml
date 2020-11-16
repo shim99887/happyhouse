@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.QnaMapper">
+
+	<select id="findAllQna" resultType="QnaDto">
+		select * from qna;
+	</select>
+	
+	<select id="findQna" parameterType="string" resultType="QnaDto">
+		select * from qna
+		where no = #{no}
+	</select>
+	
+	<insert id="registQna" parameterType="QnaDto">
+		insert into qna (writer, title, content) VALUES (#{writer}, #{title}, #{content})
+	</insert>
+	
+	<update id="updateQna" parameterType="QnaDto">
+		update qna
+		set title=#{title}, content=#{content}
+		where no=#{no}
+	</update>
+	
+	<delete id="deleteQna" parameterType="QnaDto">
+		delete from qna
+		where no=#{no}
+	</delete>
+</mapper>

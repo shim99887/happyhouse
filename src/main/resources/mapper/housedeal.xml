@@ -19,7 +19,7 @@
 	<select id="searchApt" parameterType="String" resultType="HouseDealDto">
 		select *
 		from housedeal
-		where aptname = #{aptname}
+		where aptname like CONCAT('%', #{aptname}, '%')
 	</select>
 	
 	<select id="searchDong" parameterType="String" resultType="HouseDealDto">
@@ -32,6 +32,17 @@
 		select *
 		from housedeal
 		where type = #{type}
+	</select>
+	
+	<select id="searchSido" resultType="SidoGugunCodeDto">
+		select *
+		from sidocode
+	</select>
+	
+	<select id="searchDetail" parameterType="String" resultType="HouseDealDto">
+		select *
+		from housedeal
+		where no like #{no}
 	</select>
 
 </mapper>
