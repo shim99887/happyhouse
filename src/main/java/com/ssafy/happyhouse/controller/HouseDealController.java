@@ -1,7 +1,5 @@
 package com.ssafy.happyhouse.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +20,7 @@ public class HouseDealController {
 		model.addAttribute("list", houseDealService.searchAll());
 		return "housedeal/test";
 	}
+	
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String search(@RequestParam("no") String no, Model model) {
