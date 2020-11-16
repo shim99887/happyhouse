@@ -24,7 +24,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="<%=root%>/move.do?page=notice">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="<%=root%>/move.do?page=search">매물 검색</a></li>
+						href="<%=root%>/housedeal/">매물 검색</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="<%=root%>/move.do?page=areainfo">동네 정보</a></li>
 					<li class="nav-item"
