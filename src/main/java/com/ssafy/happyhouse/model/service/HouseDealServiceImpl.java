@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.happyhouse.model.DongCodeDto;
 import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 import com.ssafy.happyhouse.model.mapper.HouseDealMapper;
@@ -49,6 +50,16 @@ public class HouseDealServiceImpl implements HouseDealService{
 	@Override
 	public HouseDealDto searchDetail(String no) {
 		return dao.searchDetail(no);
+	}
+
+	@Override
+	public List<SidoGugunCodeDto> searchGugun() {
+		return dao.searchGugun();
+	}
+
+	@Override
+	public List<DongCodeDto> searchDongName() {
+		return dao.searchDongName();
 	}
 
 

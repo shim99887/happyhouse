@@ -1,5 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ssafy.happyhouse.model.HouseInfoDto;
+import com.ssafy.happyhouse.model.HouseDealDto;
 import com.ssafy.happyhouse.model.service.HouseDealService;
 
 @Controller
@@ -21,8 +23,11 @@ public class HouseDealController {
 		System.out.println(houseDealService.searchSido());
 		model.addAttribute("list", houseDealService.searchAll());
 		model.addAttribute("sidos", houseDealService.searchSido());
+//		model.addAttribute("guguns", houseDealService.searchGugun());
+//		model.addAttribute("dongs", houseDealService.searchDongName());
 		return "housedeal/test";
 	}
+
 	
 	
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -51,7 +56,9 @@ public class HouseDealController {
 	@RequestMapping(value = "/searchDong", method = RequestMethod.GET,  headers = { "Content-type=application/json" })
 	public String searchDong(@RequestParam("dong") String dong, Model model) {
 		try {
-			model.addAttribute("list", houseDealService.searchDong(dong));
+			System.out.println(dong);
+			List<HouseDealDto> list = houseDealService.searchDong(dong);
+			model.addAttribute("list", list);
 			return "housedeal/test";
 		} catch (Exception e) {
 			e.printStackTrace();
