@@ -25,7 +25,7 @@
 	<select id="searchDong" parameterType="String" resultType="HouseDealDto">
 		select *
 		from housedeal
-		where dong like #{dong}
+		where dong like CONCAT('%', #{dong}, '%')
 	</select>
 	
 	<select id="searchType" parameterType="String" resultType="HouseDealDto">

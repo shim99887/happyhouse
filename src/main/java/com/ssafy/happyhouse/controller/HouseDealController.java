@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssafy.happyhouse.model.HouseDealDto;
+//lab.ssafy.com/sjbok090/happyhouse_spring.git
 import com.ssafy.happyhouse.model.service.HouseDealService;
 
 @Controller
@@ -53,6 +54,7 @@ public class HouseDealController {
 			return "error/error";
 		}
 	}
+	
 	@RequestMapping(value = "/searchDong", method = RequestMethod.GET,  headers = { "Content-type=application/json" })
 	public String searchDong(@RequestParam("dong") String dong, Model model) {
 		try {

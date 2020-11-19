@@ -97,33 +97,7 @@
 	</table>
 	<script>
 	$(document).ready(function(){
-<<<<<<< HEAD
-		$("#sido").change(function(){
-		$("#gugun").empty();
-			$.get("http://localhost:8000/happyhouse/api/map/goon",{
-				sido : $("#sido").val()
-			}, function(data, status) {
-				$.each(data, function(index, vo) {
-					$("#gugun").append("<option value='"+vo.gugunCode+"'>" + vo.gugunName + "</option>");
-				});//each
-			}//function)
-			);
-		});
-		$("#gugun").change(function(){
-			$("#dong").empty();
-			$.get("http://localhost:8000/happyhouse/api/map/dong",{
-				gugun : $("#gugun").val()
-			}, function(data, status) {
-				$.each(data, function(index, vo) {
-					$("#dong").append("<option value='"+vo.dongcode+"'>" + vo.dong + "</option>");
-				});//each
-			}//function)
-			);
-		});
-		$("#dong").change(function(){
-			document.location.href="/";
-		})
-=======
+
 	    $("#sido").change(function(){
 	    $("#gugun").empty();
 	        $.get("http://localhost:8000/happyhouse/api/map/goon",{
@@ -150,20 +124,7 @@
 	    	$("#houseList").empty();
 	    	console.log($("#dong").text());
 	    	document.location.href = "http://localhost:8000/happyhouse/housedeal/searchDong?dong=" + $("#dong").children("option:selected").val();
-/* 	        $.get("http://localhost:8000/happyhouse/housedeal/searchDong",{
-	            dong : $("#dong").val()
-	        }, function(data, status) {
-	            $.each(data, function(index, vo) {
-	                $("#houseList").append("<td width='100'>" + vo.no + "</td>" +
-					"<td width='100'>" + vo.dong + "</td>" +
-					"<td width='200'> " + vo.aptName + "</td>" +
-					"<td width='100'>" + vo.jibun + "</td>" +
-					"<td width='100'>" + vo.code + "</td>)"";
-	            });//each
-	        }//function)
-	        ); */
 	    });
->>>>>>> branch 'master' of https://lab.ssafy.com/sjbok090/happyhouse_spring.git
 	})
 	</script>
 </body>
