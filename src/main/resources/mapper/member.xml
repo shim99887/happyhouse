@@ -8,21 +8,29 @@
 		select * from member where id=#{id} and pwd=#{pwd}
 	</select>
 	<insert id="join" parameterType="MemberDto">
-		insert into member (id, pwd, name, addr, tel, joindate)
-		values (#{id}, #{pwd}, #{name}, #{addr}, #{tel}, now())
+		insert into member (id, pwd, name, addr, tel, email, joindate)
+		values (#{id}, #{pwd}, #{name}, #{addr}, #{tel},#{email}, #{joindate})
 	</insert>
-	<delete id="delete" parameterType="MemberDto">
+	<delete id="delete" parameterType="string">
 		delete from member
 		where id=#{id}
 	</delete>
 	<update id="update" parameterType="MemberDto">
 		update member
-		set name = #{name}, addr = #{addr}, tel = #{tel}
-		where id=#{id} and pwd=#{pwd}
+		set addr = #{addr}, tel = #{tel}
+		where id=#{id}
 	</update>
 	<select id="findPwd" parameterType="string" resultType="string">
 		select pwd
 		from member
 		where id=#{id}
+	</select>
+	<select id="findUserInfo" parameterType="string" resultType="MemberDto">
+		select * from member
+		where id=#{id}
+	</select>
+	<select id="findAllUserInfo" resultType="MemberDto">
+		select * from member
+		where role='user'
 	</select>
 </mapper>

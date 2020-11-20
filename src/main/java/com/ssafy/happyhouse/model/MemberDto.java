@@ -2,11 +2,42 @@ package com.ssafy.happyhouse.model;
 
 public class MemberDto {
 
+	private String no;
 	private String id;
 	private String pwd;
 	private String name;
 	private String addr;
 	private String tel;
+	private String joindate;
+	private String email;
+	private String role;
+	
+	
+	
+	
+	public String getNo() {
+		return no;
+	}
+
+	public void setNo(String no) {
+		this.no = no;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	public String getId() {
 		return id;
@@ -46,6 +77,16 @@ public class MemberDto {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	
+	
+	public String getJoindate() {
+		return joindate;
+	}
+
+	public void setJoindate(String joindate) {
+		this.joindate = joindate;
 	}
 
 	@Override

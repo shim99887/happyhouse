@@ -23,7 +23,7 @@
 		where no=#{no}
 	</update>
 	
-	<delete id="deleteQna" parameterType="QnaDto">
+	<delete id="deleteQna" parameterType="string">
 		delete from qna
 		where no=#{no}
 	</delete>

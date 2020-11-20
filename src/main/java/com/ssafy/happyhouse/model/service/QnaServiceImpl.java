@@ -37,8 +37,8 @@ public class QnaServiceImpl implements QnaService{
 	}
 	
 	@Override
-	public void deleteQna(QnaDto dto) {
+	public void deleteQna(String no) {
 		// TODO Auto-generated method stub
-		dao.deleteQna(dto);
+		dao.deleteQna(no);
 	}
 }
