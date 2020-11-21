@@ -1,7 +1,6 @@
 package com.ssafy.happyhouse.model.service;
 
 import java.sql.SQLException;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +14,16 @@ public class LoginServiceImpl implements LoginService {
 	@Autowired
 	private LoginDao loginDao;
 
-
 	@Override
-	public MemberDto login(Map<String, String> map) throws SQLException {
-		if (map.get("id") == null || map.get("pwd") == null)
-			return null;
+	public MemberDto findUserInfo(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return loginDao.findUserInfo(id);
+	}
+	
+	@Override
+	public MemberDto login(MemberDto dto) throws SQLException {
 
-		return loginDao.login(map);
+		return loginDao.login(dto);
 	}
 
 	@Override

@@ -7,7 +7,8 @@ public class MemberDto {
 	private String name;
 	private String addr;
 	private String tel;
-
+	private String joindate;
+	
 	public String getId() {
 		return id;
 	}
@@ -46,6 +47,16 @@ public class MemberDto {
 
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	
+	
+	public String getJoindate() {
+		return joindate;
+	}
+
+	public void setJoindate(String joindate) {
+		this.joindate = joindate;
 	}
 
 	@Override
