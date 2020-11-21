@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.model.service;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,11 +37,8 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public boolean delete(MemberDto memberDto) throws Exception {
-		if (memberDto == null)
-			return false;
-		
-		return loginDao.delete(memberDto);
+	public boolean delete(String id) throws Exception {
+		return loginDao.delete(id);
 	}
 
 	@Override
@@ -54,5 +52,11 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public String findPwd(String id) throws Exception {
 		return loginDao.findPwd(id);
+	}
+	
+	@Override
+	public List<MemberDto> findAllUserInfo() throws Exception {
+		// TODO Auto-generated method stub
+		return loginDao.findAllUserInfo();
 	}
 }

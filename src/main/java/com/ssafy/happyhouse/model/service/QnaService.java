@@ -13,5 +13,5 @@ public interface QnaService {
 	
 	void updateQna(QnaDto qna);
 	
-	void deleteQna(QnaDto dto);
+	void deleteQna(String no);
 }

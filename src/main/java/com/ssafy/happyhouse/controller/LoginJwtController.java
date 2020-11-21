@@ -1,6 +1,7 @@
 package com.ssafy.happyhouse.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -54,6 +56,8 @@ public class LoginJwtController {
 				resultMap.put("auth-token", token);
 				resultMap.put("user-id", loginUser.getId());
 				resultMap.put("user-name", loginUser.getName());
+				resultMap.put("role", loginUser.getRole());
+				System.out.println(resultMap);
 //				resultMap.put("status", true);
 //				resultMap.put("data", loginUser);
 				status = HttpStatus.ACCEPTED;
@@ -114,6 +118,28 @@ public class LoginJwtController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 	
+	@GetMapping("/info")
+	public ResponseEntity<Map<String, Object>> getAllInfo(HttpServletRequest req) throws Exception {
+		Map<String, Object> resultMap = new HashMap<>();
+		HttpStatus status = HttpStatus.ACCEPTED;
+//		System.out.println(">>>>>> " + jwtService.get(req.getHeader("auth-token")));
+		try {
+			// 사용자에게 전달할 정보이다.
+			List<MemberDto> info = memberService.findAllUserInfo();
+			System.out.println(info);
+			resultMap.putAll(jwtService.get(req.getHeader("auth-token")));
+//
+//			resultMap.put("status", true);
+			resultMap.put("info", info);
+			status = HttpStatus.ACCEPTED;
+		} catch (RuntimeException e) {
+			logger.error("정보조회 실패 : {}", e);
+			resultMap.put("message", e.getMessage());
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		return new ResponseEntity<Map<String, Object>>(resultMap, status);
+	}
+	
 	@PutMapping("/update")
 	public ResponseEntity<Boolean> modify(@RequestBody Map<String, String> map) {
 		HttpStatus status = HttpStatus.ACCEPTED;
@@ -137,4 +163,24 @@ public class LoginJwtController {
 		
 		return new ResponseEntity<Boolean>(flag, status);
 	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Boolean> delete(@PathVariable String id) {
+		HttpStatus status = HttpStatus.ACCEPTED;
+		System.out.println(id);
+		boolean flag = false;
+		
+		try {
+			flag = memberService.delete(id);
+			status = HttpStatus.ACCEPTED;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			status = HttpStatus.INTERNAL_SERVER_ERROR;
+		}
+		
+		
+		return new ResponseEntity<Boolean>(flag, status);
+	}
+
 }

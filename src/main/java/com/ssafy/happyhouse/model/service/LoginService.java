@@ -1,5 +1,7 @@
 package com.ssafy.happyhouse.model.service;
 
+import java.util.List;
+
 import com.ssafy.happyhouse.model.MemberDto;
 
 public interface LoginService {
@@ -11,7 +13,7 @@ public interface LoginService {
 	public boolean join(MemberDto dto) throws Exception;
 
 	/** 인자로 받은 MemberDto를 삭제하고, 성공 여부를 반환 */
-	public boolean delete(MemberDto memberDto) throws Exception;
+	public boolean delete(String id) throws Exception;
 	
 	/** 인자로 받은 MemberDto를 수정하고, 성공 여부를 반환 */
 	public boolean update(MemberDto memberDto) throws Exception;
@@ -19,4 +21,6 @@ public interface LoginService {
 	public String findPwd(String id) throws Exception;
 	
 	public MemberDto findUserInfo(String id) throws Exception;
+	
+	public List<MemberDto>findAllUserInfo() throws Exception;
 }

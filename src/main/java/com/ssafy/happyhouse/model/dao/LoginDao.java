@@ -1,6 +1,9 @@
 package com.ssafy.happyhouse.model.dao;
 
 import java.sql.SQLException;
+import java.util.List;
+
+//lab.ssafy.com/sjbok090/happyhouse_spring.git
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,7 +19,7 @@ public interface LoginDao {
 	public boolean join(MemberDto memberDto) throws SQLException;
 	
 	/** 인자로 받은 MemberDto를 삭제하고, 성공 여부를 반환 */
-	public boolean delete(MemberDto memberDto) throws SQLException;
+	public boolean delete(String id) throws SQLException;
 	
 	/** 인자로 받은 MemberDto를 수정하고, 성공 여부를 반환 */
 	public boolean update(MemberDto memberDto) throws SQLException;
@@ -24,4 +27,6 @@ public interface LoginDao {
 	public String findPwd(String id) throws SQLException;
 	
 	public MemberDto findUserInfo(String id) throws SQLException;
+	
+	public List<MemberDto> findAllUserInfo() throws SQLException;
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.QnaDto;
@@ -58,9 +59,10 @@ public class QnaController {
    		return new ResponseEntity<Integer>(0, HttpStatus.OK);
    	}
  	
- 	@DeleteMapping
- 	public  ResponseEntity<Integer> deleteQna(@RequestBody QnaDto qna) throws Exception {
-   		qnaService.deleteQna(qna);
+ 	@DeleteMapping("/delete")
+ 	public  ResponseEntity<Integer> deleteQna(@RequestParam String no) throws Exception {
+ 		System.out.println(no);
+   		qnaService.deleteQna(no);
    		return new ResponseEntity<Integer>(0, HttpStatus.OK);
    	}
 }

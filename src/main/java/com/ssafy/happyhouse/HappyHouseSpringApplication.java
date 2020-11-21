@@ -25,7 +25,7 @@ public class HappyHouseSpringApplication implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtInterceptor).addPathPatterns("/user/**") // 기본 적용 경로
-                .excludePathPatterns(Arrays.asList("/user/confirm/**", "/board/list"));// 적용 제외 경로
+                .excludePathPatterns(Arrays.asList("/user/confirm/**", "/user/regist/**"));// 적용 제외 경로
     }
 
 //    Interceptor를 이용해서 처리하므로 전역의 Corss Origin 처리를 해준다.
