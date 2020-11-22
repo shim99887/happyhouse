@@ -41,4 +41,22 @@ public class QnaServiceImpl implements QnaService{
 		// TODO Auto-generated method stub
 		dao.deleteQna(no);
 	}
+	
+	@Override
+	public void registQnaReply(QnaDto qna) {
+		// TODO Auto-generated method stub
+		dao.registQnaReply(qna);
+	}
+	
+	@Override
+	public QnaDto getQnaReply(String no) {
+		// TODO Auto-generated method stub
+		return dao.getQnaReply(no);
+	}
+	
+	@Override
+	public void deleteQnaReply(String no) {
+		// TODO Auto-generated method stub
+		dao.deleteQnaReply(no);
+	}
 }

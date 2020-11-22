@@ -17,4 +17,10 @@ public interface QnaMapper {
 	void updateQna(QnaDto qna);
 	
 	void deleteQna(String no);
+	
+	void registQnaReply(QnaDto qna);
+	
+	QnaDto getQnaReply(String no);
+	
+	void deleteQnaReply(String no);
 }

@@ -27,4 +27,22 @@
 		delete from qna
 		where no=#{no}
 	</delete>
+	
+	<insert id="registQnaReply" parameterType="QnaDto">
+		insert into qnareply (no, writer, title, content) 
+		values(#{no},#{writer},#{title},#{content})
+		on DUPLICATE KEY UPDATE
+		title=#{title},
+		content=#{content}
+	</insert>
+	
+	<select id="getQnaReply" parameterType="string" resultType="QnaDto">
+		select * from qnareply
+		where no=#{no}
+	</select>
+	
+	<delete id="deleteQnaReply" parameterType="string">
+		delete from qnareply
+		where no=#{no}
+	</delete>
 </mapper>

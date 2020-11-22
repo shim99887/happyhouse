@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +64,30 @@ public class QnaController {
  	public  ResponseEntity<Integer> deleteQna(@RequestParam String no) throws Exception {
  		System.out.println(no);
    		qnaService.deleteQna(no);
+   		return new ResponseEntity<Integer>(0, HttpStatus.OK);
+   	}
+ 	
+ 	@PostMapping("/reply/regist")
+   	public ResponseEntity<Integer> registQnaReply(@RequestBody QnaDto qna) throws Exception {
+ 		System.out.println(qna);
+   		qnaService.registQnaReply(qna);
+   		return new ResponseEntity<Integer>(0, HttpStatus.OK);
+   	}
+ 	
+ 	@GetMapping("/reply/detail/{no}")
+   	public ResponseEntity<QnaDto> getQnaReply(@PathVariable String no) throws Exception {
+		QnaDto qna = qnaService.getQnaReply(no);
+		
+		if(qna == null) {
+			return new ResponseEntity(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<QnaDto>(qna, HttpStatus.OK);
+   	}
+ 	
+ 	@DeleteMapping("/reply/delete")
+ 	public  ResponseEntity<Integer> deleteQnaReply(@RequestParam String no) throws Exception {
+ 		System.out.println(no);
+   		qnaService.deleteQnaReply(no);
    		return new ResponseEntity<Integer>(0, HttpStatus.OK);
    	}
 }
