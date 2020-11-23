@@ -7,16 +7,31 @@ public class CoronaDto {
 	private String todayFromAbroad;
 	private String freeTotal;
 	private String todayFree;
-	private String coronaTotal;
-	private String coronaToday;
+	private String isolateTotal;
+	private String isolateToday;
 	private String deadTotal;
 	private String deadToday;
+
+	
+	
 	@Override
 	public String toString() {
 		return "CoronaDto [totalCnt=" + totalCnt + ", todayCnt=" + todayCnt + ", todayFromKorea=" + todayFromKorea
 				+ ", todayFromAbroad=" + todayFromAbroad + ", freeTotal=" + freeTotal + ", todayFree=" + todayFree
-				+ ", coronaTotal=" + coronaTotal + ", coronaToday=" + coronaToday + ", deadTotal=" + deadTotal
+				+ ", isolateTotal=" + isolateTotal + ", isolateToday=" + isolateToday + ", deadTotal=" + deadTotal
 				+ ", deadToday=" + deadToday + "]";
+	}
+	public String getIsolateTotal() {
+		return isolateTotal;
+	}
+	public void setIsolateTotal(String isolateTotal) {
+		this.isolateTotal = isolateTotal;
+	}
+	public String getIsolateToday() {
+		return isolateToday;
+	}
+	public void setIsolateToday(String isolateToday) {
+		this.isolateToday = isolateToday;
 	}
 	public String getTotalCnt() {
 		return totalCnt;
@@ -53,18 +68,6 @@ public class CoronaDto {
 	}
 	public void setTodayFree(String todayFree) {
 		this.todayFree = todayFree;
-	}
-	public String getCoronaTotal() {
-		return coronaTotal;
-	}
-	public void setCoronaTotal(String coronaTotal) {
-		this.coronaTotal = coronaTotal;
-	}
-	public String getCoronaToday() {
-		return coronaToday;
-	}
-	public void setCoronaToday(String coronaToday) {
-		this.coronaToday = coronaToday;
 	}
 	public String getDeadTotal() {
 		return deadTotal;

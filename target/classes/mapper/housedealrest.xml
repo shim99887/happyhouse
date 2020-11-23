@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.happyhouse.model.mapper.HouseDealRestMapper">
+
+
+	<select id="findAllHouseDeal" resultType="HouseDealDto">
+		select * 
+		from housedeal
+	</select>
+
+	<select id="getSido" resultType="SidoGugunCodeDto">
+		select left(sido_code, 2) as sidoCode, sido_name as sidoName
+		from sidocode
+	</select>
+
+	<select id="getGoon" parameterType="string" resultType="SidoGugunCodeDto">
+		select left(gugun_code,5) as gugunCode,  gugun_name as gugunName
+		from guguncode
+		where left(gugun_code,2) = #{sido}
+	</select>
+	
+	<select id="getDong" parameterType="string" resultType="map">
+		select dong, dongcode
+		from dongcode
+		where left(dongcode,5) = #{gugun}
+	</select>
+</mapper>
