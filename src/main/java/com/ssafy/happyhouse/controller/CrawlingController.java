@@ -1,9 +1,13 @@
 package com.ssafy.happyhouse.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.model.CoronaDto;
+import com.ssafy.happyhouse.model.NewsDto;
 
 @RestController
 @RequestMapping("/crawling")
@@ -46,5 +51,21 @@ public class CrawlingController {
 		
 		
 		return new ResponseEntity<CoronaDto>(corona, HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/news")
+	ResponseEntity<List<NewsDto>> getNews() throws IOException{
+		String url = "https://search.naver.com/search.naver?query=%EB%B6%80%EB%8F%99%EC%82%B0&where=news&ie=utf8&sm=nws_hty";
+		
+		Document doc = Jsoup.connect(url).get();
+		Elements content = doc.select("a.news_tit");
+		List<NewsDto> list = new ArrayList<NewsDto>();
+		
+		for(Element el : content) {
+			
+			list.add(new NewsDto(el.attr("title"), el.attr("href")));
+		}
+		
+		return new ResponseEntity<List<NewsDto>>(list, HttpStatus.ACCEPTED);
 	}
 }

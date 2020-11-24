@@ -2,7 +2,7 @@ package com.ssafy.happyhouse;
 import static com.google.common.base.Predicates.or;
 import static springfox.documentation.builders.PathSelectors.regex;
 
-//http://localhost:8000/happyhouse/swagger-ui.html
+//http://localhost:8002/happyhouse/swagger-ui.html
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
